@@ -15,15 +15,19 @@ var Container = React.createClass({
         children: pt.renderable.isRequired
     },
 
+    handleScroll: function () {
+        debugger;
+    },
+
     render: function () {
         return (
-            <div className="rs-base-container">
+            <div onScroll={this.handleScroll} className="rs-base-container">
                 <div className="rs-native-scroll">
                     <div className="rs-content">
                         {this.props.children}
                     </div>
-                    <VerticalScrollBar />
                 </div>
+                <VerticalScrollBar />
             </div>
         );
     }
