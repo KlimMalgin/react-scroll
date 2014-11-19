@@ -14,18 +14,24 @@ var browserify = require('browserify'),
 
 var paths = {
     scss: ['scss/main.scss'],
-    scripts: ['./src/example.js']
+    scripts: ['./src/example.js'],
+    watch: {
+        js: ['src/**/*.js'],
+        scss: ['scss/**/*.scss']
+    }
 };
 
 var dest = {
     js: 'build',
-    css: 'css'
+    css: 'css',
+    buildCss: 'build'
 };
 
 gulp.task('sass', function () {
     return gulp.src(paths.scss)
         .pipe(sass())
-        .pipe(gulp.dest(dest.css));
+        .pipe(gulp.dest(dest.css))
+        .pipe(gulp.dest(dest.buildCss));
 });
 
 gulp.task('scripts', function () {
@@ -48,6 +54,12 @@ gulp.task('server', function () {
     });
 });
 
+gulp.task('watch', ['build'], function (cb) {
+    gulp.watch(paths.watch.js, ['scripts']);
+    gulp.watch(paths.watch.scss, ['sass']);
+    cb();
+});
+
 gulp.task('build', ['scripts', 'sass', 'server']);
 
-gulp.task('default', ['build']);
+gulp.task('default', ['watch']);

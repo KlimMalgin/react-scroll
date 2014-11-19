@@ -1,4 +1,26 @@
-.example {
-  margin: 0; }
-  .example .part {
-    margin: 0; }
+.rs-base-container {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  overflow: hidden; }
+
+.rs-native-scroll {
+  width: inherit;
+  height: inherit;
+  overflow: scroll;
+  padding: 0 22px 22px 0; }
+
+.rs-scroll-bar {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  width: 9px;
+  height: inherit;
+  cursor: pointer;
+  background-color: #ddd; }
+  .rs-scroll-bar .rs-toddler {
+    width: 9px;
+    height: 100px;
+    background-color: #999; }
+    .rs-scroll-bar .rs-toddler:hover {
+      background-color: #666; }
