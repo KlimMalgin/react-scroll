@@ -7,6 +7,8 @@
 var React = require('react/addons'),
     pt = React.PropTypes;
 
+var ScrollBar = require('./ScrollBar');
+
 var Container = React.createClass({
 
     propTypes: {
@@ -20,6 +22,7 @@ var Container = React.createClass({
                     <div className="rs-content">
                         {this.props.children}
                     </div>
+                    <ScrollBar />
                 </div>
             </div>
         );

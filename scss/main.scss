@@ -1,10 +1,14 @@
 
 
-.example {
-  margin: 0;
+.rs-base-container {
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+}
 
-  .part {
-    margin: 0;
-  }
-
+.rs-native-scroll {
+  width: inherit;
+  height: inherit;
+  overflow: scroll;
+  padding: 0 22px 22px 0;
 }
