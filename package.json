@@ -1,0 +1,12 @@
+{
+  "name": "react-scroll",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "react": "~0.11.2"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.8",
+    "gulp-sass": "~1.1.0"
+  }
+}
