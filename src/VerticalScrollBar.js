@@ -8,7 +8,7 @@ var React = require('react');
 
 var Toddler = require('./Toddler');
 
-var ScrollBar = React.createClass({
+var VerticalScrollBar = React.createClass({
     render: function () {
         return (<div className="rs-scroll-bar">
             <Toddler />
@@ -16,4 +16,4 @@ var ScrollBar = React.createClass({
     }
 });
 
-module.exports = ScrollBar;
+module.exports = VerticalScrollBar;

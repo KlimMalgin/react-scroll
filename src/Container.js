@@ -7,7 +7,7 @@
 var React = require('react/addons'),
     pt = React.PropTypes;
 
-var ScrollBar = require('./ScrollBar');
+var VerticalScrollBar = require('./VerticalScrollBar');
 
 var Container = React.createClass({
 
@@ -22,7 +22,7 @@ var Container = React.createClass({
                     <div className="rs-content">
                         {this.props.children}
                     </div>
-                    <ScrollBar />
+                    <VerticalScrollBar />
                 </div>
             </div>
         );
