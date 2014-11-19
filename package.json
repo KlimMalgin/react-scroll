@@ -9,6 +9,10 @@
     "express": "~4.9.6",
     "gulp-express": "0.1.0",
     "gulp": "~3.8.8",
-    "gulp-sass": "~1.1.0"
+    "gulp-sass": "~1.1.0",
+    "browserify": "~6.0.3",
+    "deamdify": "~0.1.1",
+    "reactify": "~0.14.0",
+    "vinyl-source-stream": "~1.0.0"
   }
 }
