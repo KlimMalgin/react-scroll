@@ -1,4 +1,6 @@
 
+@import "mixins";
+
 body {
   height: 500px;
 }
@@ -23,6 +25,7 @@ body {
 }
 
 .rs-vertical-scroll-bar {
+  @include user-select(none);
   position: absolute;
   top: 0;
   right: 3px;

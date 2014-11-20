@@ -5,10 +5,14 @@
 
 var Reflux = require('reflux');
 
+var sync = {
+    sync: true
+};
+
 var ScrollActions = {
 
-    verticalScroll: Reflux.createAction(),
-    changeVerticalToggleHeight: Reflux.createAction()
+    verticalScroll: Reflux.createAction(sync),
+    changeVerticalToggleHeight: Reflux.createAction(sync)
 
 };
 

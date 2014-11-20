@@ -11,14 +11,27 @@ var ScrollActions = require('./ScrollActions');
 
 var ContentContainer = require('./ContentContainer');
 
+var Reflux = require('reflux'),
+    ListenerMixin = Reflux.ListenerMixin;
+
+var ScrollBarParamStore = require('./stores/ScrollBarParamStore');
+
 var NativeScrollContainer = React.createClass({
+
+    mixins: [
+        ListenerMixin,
+        Reflux.connect(ScrollBarParamStore)
+    ],
 
     propTypes: {
         children: pt.renderable.isRequired
     },
 
     handleScroll: function () {
-        ScrollActions.verticalScroll(this.getDOMNode().scrollTop);
+        var offset = Math.ceil(this.getDOMNode().scrollTop * this.state.onePercentValue);
+
+        console.log("scrollTop: ", this.getDOMNode(), this.getDOMNode().scrollTop);
+        ScrollActions.verticalScroll(offset);
     },
 
     render: function () {

@@ -18,6 +18,16 @@ var ContentContainer = React.createClass({
     },
 
     componentDidMount: function () {
+        console.log('componentDidMount');
+        this.updateComponentData();
+    },
+
+    /*componentDidUpdate: function () {
+        console.log('componentDidUpdate');
+        this.updateComponentData();
+    },*/
+
+    updateComponentData: function () {
         var el = this.getDOMNode(),
             baseContainer = closest(el, 'rs-base-container'),
             contentContainer = el,
@@ -29,7 +39,8 @@ var ContentContainer = React.createClass({
             // ==
             verticalToddleHeight = Math.ceil(realPercent * baseContainerHeight);
 
-        ScrollActions.changeVerticalToggleHeight(verticalToddleHeight);
+
+        ScrollActions.changeVerticalToggleHeight(verticalToddleHeight, realPercent);
     },
 
     render: function () {

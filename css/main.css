@@ -18,6 +18,10 @@ body {
   padding: 0 22px 22px 0; }
 
 .rs-vertical-scroll-bar {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   position: absolute;
   top: 0;
   right: 3px;

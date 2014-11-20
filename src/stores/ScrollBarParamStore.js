@@ -10,7 +10,8 @@ var ScrollBarParamStore = Reflux.createStore({
 
     init: function () {
         this.composite = {
-            vToddleHeight: 0
+            vToddleHeight: 0,
+            onePercentValue: 0
         };
 
         this.listenTo(ScrollActions.changeVerticalToggleHeight, this.vToggleResize);
@@ -24,9 +25,10 @@ var ScrollBarParamStore = Reflux.createStore({
         this.trigger(this.composite);
     },
 
-    vToggleResize: function (vToggleHeight) {
+    vToggleResize: function (vToggleHeight, onePercentValue) {
         console.log("vToggleHeight: ", vToggleHeight);
         this.composite['vToggleHeight'] = vToggleHeight;
+        this.composite['onePercentValue'] = onePercentValue;
         this.update();
     }
 
