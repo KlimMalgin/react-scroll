@@ -11,12 +11,15 @@ var Reflux = require('reflux'),
 
 var ScrollBarParamStore = require('./stores/ScrollBarParamStore');
 
+var DocumentListenerMixin = require('./utils/DocumentListenerMixin');
+
 var px = require('./utils/px');
 
 var Toddler = React.createClass({
 
     mixins: [
         ListenerMixin,
+        DocumentListenerMixin,
         Reflux.connect(ScrollBarParamStore)
     ],
 
@@ -26,8 +29,24 @@ var Toddler = React.createClass({
         el.style.height = px(this.state.vToggleHeight);
     },
 
+    handlerMouseDown: function () {
+        console.log('handlerMouseDown');
+        this.onMouseMove(this.handleMouseMove);
+        this.onMouseUp(this.handleMouseUp);
+    },
+
+    handleMouseMove: function () {
+        console.log('onMouseMove: ', arguments);
+    },
+
+    handleMouseUp: function () {
+        this.offMouseMove();
+        this.offMouseUp();
+        console.log('onMouseUp: ', arguments);
+    },
+
     render: function () {
-        return (<div className="rs-toddler"></div>);
+        return (<div onMouseDown={this.handlerMouseDown} className="rs-toddler"></div>);
     }
 
 });
