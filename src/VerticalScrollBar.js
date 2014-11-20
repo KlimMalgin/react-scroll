@@ -20,13 +20,7 @@ var VerticalScrollBar = React.createClass({
         Reflux.connect(VerticalScrollStore, 'offset')
     ],
 
-    /*componentDidMount: function () {
-        var cmp = this.getDOMNode();
-        cmp.style.height = this.state.offset + "px";
-    },*/
-
     render: function () {
-        console.log(this.state.offset);
         return (<div className="rs-vertical-scroll-bar">
             <Toddler offset={this.state.offset} />
         </div>);

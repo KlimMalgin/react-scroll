@@ -9,6 +9,8 @@ var React = require('react/addons'),
 
 var ScrollActions = require('./ScrollActions');
 
+var ContentContainer = require('./ContentContainer');
+
 var NativeScrollContainer = React.createClass({
 
     propTypes: {
@@ -16,18 +18,13 @@ var NativeScrollContainer = React.createClass({
     },
 
     handleScroll: function () {
-        /*var parent = this._owner.getDOMNode();
-        debugger;*/
-        console.log(this.getDOMNode().scrollTop);
         ScrollActions.verticalScroll(this.getDOMNode().scrollTop);
     },
 
     render: function () {
         return (
             <div className="rs-native-scroll" onScroll={this.handleScroll}>
-                <div className="rs-content">
-                        {this.props.children}
-                </div>
+                <ContentContainer>{this.props.children}</ContentContainer>
             </div>
         );
     }

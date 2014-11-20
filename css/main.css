@@ -1,7 +1,14 @@
+body {
+  height: 500px; }
+
+.example-block {
+  width: 300px;
+  height: 400px; }
+
 .rs-base-container {
   position: relative;
-  width: 300px;
-  height: 400px;
+  width: inherit;
+  height: inherit;
   overflow: hidden; }
 
 .rs-native-scroll {

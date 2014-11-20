@@ -6,7 +6,10 @@
 var Reflux = require('reflux');
 
 var ScrollActions = {
-    verticalScroll: Reflux.createAction()
+
+    verticalScroll: Reflux.createAction(),
+    changeVerticalToggleHeight: Reflux.createAction()
+
 };
 
 module.exports = ScrollActions;
