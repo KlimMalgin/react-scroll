@@ -7,6 +7,8 @@
 var React = require('react/addons'),
     pt = React.PropTypes;
 
+var NativeScrollContainer = require('./NativeScrollContainer');
+
 var VerticalScrollBar = require('./VerticalScrollBar');
 
 var Container = React.createClass({
@@ -15,18 +17,10 @@ var Container = React.createClass({
         children: pt.renderable.isRequired
     },
 
-    handleScroll: function () {
-        debugger;
-    },
-
     render: function () {
         return (
-            <div onScroll={this.handleScroll} className="rs-base-container">
-                <div className="rs-native-scroll">
-                    <div className="rs-content">
-                        {this.props.children}
-                    </div>
-                </div>
+            <div className="rs-base-container">
+                <NativeScrollContainer>{this.props.children}</NativeScrollContainer>
                 <VerticalScrollBar />
             </div>
         );

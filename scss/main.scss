@@ -19,13 +19,15 @@
   top: 0;
   right: 3px;
   width: 9px;
-  //height: inherit;
+  height: inherit;
   cursor: pointer;
   background-color: #ddd;
 
   .rs-toddler{
+    position: absolute;
+    top: 0;
     width: 9px;
-    //height: 100px;
+    height: 100px;
     background-color: #999;
 
     &:hover {

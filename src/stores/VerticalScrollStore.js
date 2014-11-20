@@ -23,6 +23,7 @@ var VerticalScrollStore = Reflux.createStore({
     },
 
     handleScroll: function (scrollTop) {
+        console.log(scrollTop);
         var offset = scrollTop; // Calculate Offset for toddle
         this.update(offset);
     }
