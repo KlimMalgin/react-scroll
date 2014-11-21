@@ -5,6 +5,7 @@
 
 var Reflux = require('reflux');
 var ScrollActions = require('./../ScrollActions');
+var VerticalScrollMoveStore = require('./VerticalScrollMoveStore');
 
 /**
  * Получает данные о вертикальном смещении (scrollTop) для блока с контентом.
@@ -17,6 +18,7 @@ var VerticalScrollStore = Reflux.createStore({
         this.offset = 0;
 
         this.listenTo(ScrollActions.verticalScroll, this.handleScroll);
+        this.listenTo(VerticalScrollMoveStore, this.handleVerticalScrollMove);
     },
 
     getDefaultData: function() {
@@ -29,8 +31,19 @@ var VerticalScrollStore = Reflux.createStore({
 
     handleScroll: function (scrollTop) {
         console.log('VerticalScrollStore::verticalScroll %o', scrollTop);
-        var offset = scrollTop;
-        this.update(offset);
+        this.update(scrollTop);
+    },
+
+    handleVerticalScrollMove: function (data) {
+        console.log('handleVerticalScrollMove', arguments);
+
+        var upperBound = data.verticalScrollHeight - data.vToddleHeight;
+
+        var result = data.startScrollTop + data.offsetToddleY;
+        this.update(
+            result < 0 ? 0 :
+                result >= upperBound ?
+                    upperBound : result);
     }
 
 });

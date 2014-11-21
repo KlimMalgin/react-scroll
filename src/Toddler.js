@@ -28,12 +28,11 @@ var Toddler = React.createClass({
     ],
 
     cache: {
-        nativeScrollEl: null
+        nativeScrollContainer: null
     },
 
     componentDidMount: function () {
-        // TODO: getElementsByClassName -> IE8 and less - failed
-        this.cache.nativeScrollEl = closest(this.getDOMNode(), 'rs-base-container').getElementsByClassName('rs-native-scroll')[0];
+        this.cache.nativeScrollContainer = closest(this.getDOMNode(), "rs-base-container").getElementsByClassName("rs-native-scroll")[0];
     },
 
     componentDidUpdate: function () {
@@ -47,19 +46,20 @@ var Toddler = React.createClass({
         this.onMouseMove(this.handleMouseMove);
         this.onMouseUp(this.handleMouseUp);
 
-        ScrollActions.configNativeScrollTop(this.cache.nativeScrollEl.scrollTop);
+        ScrollActions.configNativeScrollTop(this.getDOMNode().offsetTop);
+        ScrollActions.configVerticalScrollHeight(this._owner.getDOMNode().clientHeight);
         ScrollActions.startMouseData(e.pageX, e.pageY);
     },
 
     handleMouseMove: function (e) {
-        console.log('onMouseMove: %o %o', e.pageX, e.pageY);
+        console.log(this.cache.nativeScrollContainer.scrollTop);
+        ScrollActions.configContentScrollTop(this.cache.nativeScrollContainer.scrollTop);
         ScrollActions.changeMouseData(e.pageX, e.pageY);
     },
 
-    handleMouseUp: function (e) {
+    handleMouseUp: function () {
         this.offMouseMove();
         this.offMouseUp();
-        console.log('onMouseUp: %o %o', e.pageX, e.pageY);
     },
 
     render: function () {

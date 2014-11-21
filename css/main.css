@@ -12,6 +12,10 @@ body {
   overflow: hidden; }
 
 .rs-native-scroll {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   width: inherit;
   height: inherit;
   overflow: scroll;
@@ -30,6 +34,10 @@ body {
   cursor: pointer;
   background-color: #ddd; }
   .rs-vertical-scroll-bar .rs-toddler {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     position: absolute;
     top: 0;
     width: 9px;

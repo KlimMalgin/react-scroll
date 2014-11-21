@@ -19,6 +19,7 @@ var ContentContainer = React.createClass({
 
     componentDidMount: function () {
         console.log('componentDidMount');
+        ScrollActions.configContentHeight(this.getDOMNode().clientHeight);
         this.updateComponentData();
     },
 

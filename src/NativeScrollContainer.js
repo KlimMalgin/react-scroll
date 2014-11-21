@@ -16,6 +16,7 @@ var Reflux = require('reflux'),
 
 var ScrollBarParamStore = require('./stores/ScrollBarParamStore');
 var VerticalScrollMoveStore = require('./stores/VerticalScrollMoveStore');
+var VerticalContentScrollStore = require('./stores/VerticalContentScrollStore');
 
 var closest = require('closest');
 
@@ -24,7 +25,8 @@ var NativeScrollContainer = React.createClass({
     mixins: [
         ListenerMixin,
         Reflux.connect(ScrollBarParamStore),
-        Reflux.connect(VerticalScrollMoveStore)
+        Reflux.connect(VerticalContentScrollStore, 'offsetContent')/*,
+        Reflux.connect(VerticalScrollMoveStore)*/
     ],
 
     propTypes: {
@@ -38,7 +40,7 @@ var NativeScrollContainer = React.createClass({
         onePercentValue: 0
     },
 
-    componentDidMount: function () {
+    /*componentDidMount: function () {
         this.cache.onePercentValue = closest(this.getDOMNode(), "rs-base-container").clientHeight / 100
     },
 
@@ -50,6 +52,10 @@ var NativeScrollContainer = React.createClass({
         this.getDOMNode().scrollTop = result;
 
         console.log('NativeScrollContainer::componentDidUpdate %o %o', arguments, result);
+    },*/
+
+    componentDidUpdate: function () {
+        this.getDOMNode().scrollTop = this.state.offsetContent;
     },
 
     handleScroll: function () {

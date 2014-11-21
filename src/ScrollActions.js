@@ -12,8 +12,13 @@ var sync = {
 var ScrollActions = {
 
     configNativeScrollTop: Reflux.createAction(sync),
+    configVerticalScrollHeight: Reflux.createAction(sync),
     // ==
+    configContentHeight: Reflux.createAction(sync),
+    configContentScrollTop: Reflux.createAction(sync),
+    // ======
     verticalScroll: Reflux.createAction(sync),
+    verticalContentScroll: Reflux.createAction(sync),
     changeVerticalToggleHeight: Reflux.createAction(sync),
     // ==
     startMouseData: Reflux.createAction(sync),
