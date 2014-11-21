@@ -38,7 +38,7 @@ var NativeScrollContainer = React.createClass({
     },
 
     componentDidUpdate: function () {
-        console.log('Set Scroll Top: ', this.state.offsetContent);
+        //console.log('Set Scroll Top: ', this.state.offsetContent);
         this.getDOMNode().scrollTop = this.state.offsetContent;
     },
 

@@ -88,7 +88,7 @@ var VerticalScrollMoveStore = Reflux.createStore({
         this.listenTo(ScrollActions.configVerticalScrollHeight, this.saveVerticalScrollHeight);
         // ==
         this.listenTo(ScrollActions.configContentHeight, this.saveContentHeight);
-        this.listenTo(ScrollActions.configContentScrollTop, this.saveContentScrollTop);
+        this.listenTo(ScrollActions.configContentScrollTop, this.saveContentScrollTop);  // TODO: WTF?? - Dublicate of configNativeScrollTop
         // ==
         this.listenTo(ScrollActions.changeVerticalToggleHeight, this.savePercentValue);
         // ==

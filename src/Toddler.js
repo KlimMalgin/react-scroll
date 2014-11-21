@@ -34,9 +34,6 @@ var Toddler = React.createClass({
     componentDidMount: function () {
         var el = this.getDOMNode();
         this.cache.nativeScrollContainer = closest(el, "rs-base-container").getElementsByClassName("rs-native-scroll")[0];
-
-        //EventListener.listen(el, 'scroll', handler);
-
     },
 
     componentDidUpdate: function () {
@@ -54,6 +51,7 @@ var Toddler = React.createClass({
         this.offScroll();
 
         ScrollActions.configNativeScrollTop(this.getDOMNode().offsetTop);
+        ScrollActions.configContentScrollTop(this.cache.nativeScrollContainer.scrollTop);
         ScrollActions.configVerticalScrollHeight(this._owner.getDOMNode().clientHeight);
         ScrollActions.startMouseData(e.pageX, e.pageY);
     },
@@ -61,7 +59,7 @@ var Toddler = React.createClass({
     handleMouseMove: function (e) {
         //console.log(this.cache.nativeScrollContainer.scrollTop);
 
-        ScrollActions.configContentScrollTop(this.cache.nativeScrollContainer.scrollTop);
+        //ScrollActions.configContentScrollTop(this.cache.nativeScrollContainer.scrollTop);
         ScrollActions.changeMouseData(e.pageX, e.pageY);
     },
 
