@@ -15,47 +15,35 @@ var Reflux = require('reflux'),
     ListenerMixin = Reflux.ListenerMixin;
 
 var ScrollBarParamStore = require('./stores/ScrollBarParamStore');
-var VerticalScrollMoveStore = require('./stores/VerticalScrollMoveStore');
 var VerticalContentScrollStore = require('./stores/VerticalContentScrollStore');
 
-var closest = require('closest');
+var ScrollListenerMixin = require('./utils/ScrollListenerMixin');
 
 var NativeScrollContainer = React.createClass({
 
     mixins: [
         ListenerMixin,
+        ScrollListenerMixin,
         Reflux.connect(ScrollBarParamStore),
-        Reflux.connect(VerticalContentScrollStore, 'offsetContent')/*,
-        Reflux.connect(VerticalScrollMoveStore)*/
+        Reflux.connect(VerticalContentScrollStore, 'offsetContent'),
+        Reflux.listenTo(ScrollActions.activateScrollListener, 'onActivateScrollListener')
     ],
 
     propTypes: {
         children: pt.renderable.isRequired
     },
 
-    cache: {
-        /**
-         * Значение в пикселах равное одному проценту от высоты блока с контентом
-         */
-        onePercentValue: 0
+    componentDidMount: function () {
+        this.onActivateScrollListener();
     },
-
-    /*componentDidMount: function () {
-        this.cache.onePercentValue = closest(this.getDOMNode(), "rs-base-container").clientHeight / 100
-    },
-
-    componentDidUpdate: function (prevProps, prevState) {
-        var offsetValue = this.cache.onePercentValue * prevState.offsetPercentY,
-            result = prevState.startScrollTop +
-                        prevState.offsetToddleY >= 0 ? offsetValue : -offsetValue;
-
-        this.getDOMNode().scrollTop = result;
-
-        console.log('NativeScrollContainer::componentDidUpdate %o %o', arguments, result);
-    },*/
 
     componentDidUpdate: function () {
+        console.log('Set Scroll Top: ', this.state.offsetContent);
         this.getDOMNode().scrollTop = this.state.offsetContent;
+    },
+
+    onActivateScrollListener: function () {
+        this.onScroll(this.getDOMNode(), this.handleScroll);
     },
 
     handleScroll: function () {
@@ -65,7 +53,7 @@ var NativeScrollContainer = React.createClass({
 
     render: function () {
         return (
-            <div className="rs-native-scroll" onScroll={this.handleScroll}>
+            <div className="rs-native-scroll">
                 <ContentContainer>{this.props.children}</ContentContainer>
             </div>
         );

@@ -10,19 +10,19 @@ var Reflux = require('reflux'),
     ListenerMixin = Reflux.ListenerMixin;
 
 var ScrollBarParamStore = require('./stores/ScrollBarParamStore');
-
 var DocumentListenerMixin = require('./utils/DocumentListenerMixin');
-
 var ScrollActions = require('./ScrollActions');
 
 var closest = require('closest');
-
 var px = require('./utils/px');
+
+var ScrollListenerMixin = require('./utils/ScrollListenerMixin');
 
 var Toddler = React.createClass({
 
     mixins: [
         ListenerMixin,
+        ScrollListenerMixin,
         DocumentListenerMixin,
         Reflux.connect(ScrollBarParamStore)
     ],
@@ -32,7 +32,11 @@ var Toddler = React.createClass({
     },
 
     componentDidMount: function () {
-        this.cache.nativeScrollContainer = closest(this.getDOMNode(), "rs-base-container").getElementsByClassName("rs-native-scroll")[0];
+        var el = this.getDOMNode();
+        this.cache.nativeScrollContainer = closest(el, "rs-base-container").getElementsByClassName("rs-native-scroll")[0];
+
+        //EventListener.listen(el, 'scroll', handler);
+
     },
 
     componentDidUpdate: function () {
@@ -46,13 +50,17 @@ var Toddler = React.createClass({
         this.onMouseMove(this.handleMouseMove);
         this.onMouseUp(this.handleMouseUp);
 
+        // Remove scroll handler in NativeScrollContainer
+        this.offScroll();
+
         ScrollActions.configNativeScrollTop(this.getDOMNode().offsetTop);
         ScrollActions.configVerticalScrollHeight(this._owner.getDOMNode().clientHeight);
         ScrollActions.startMouseData(e.pageX, e.pageY);
     },
 
     handleMouseMove: function (e) {
-        console.log(this.cache.nativeScrollContainer.scrollTop);
+        //console.log(this.cache.nativeScrollContainer.scrollTop);
+
         ScrollActions.configContentScrollTop(this.cache.nativeScrollContainer.scrollTop);
         ScrollActions.changeMouseData(e.pageX, e.pageY);
     },
@@ -60,6 +68,8 @@ var Toddler = React.createClass({
     handleMouseUp: function () {
         this.offMouseMove();
         this.offMouseUp();
+
+        ScrollActions.activateScrollListener();
     },
 
     render: function () {

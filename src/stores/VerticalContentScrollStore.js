@@ -26,6 +26,7 @@ var VerticalContentScrollStore = Reflux.createStore({
     },
 
     handleChangeOffset: function (data) {
+        debugger;
         var onePercentValue = data.verticalContentHeight / 100,
             offsetValue = onePercentValue * data.offsetPercentY,
             result = data.startScrollTop + data.offsetToddleY >= 0 ? offsetValue : -offsetValue;

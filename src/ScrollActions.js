@@ -11,6 +11,8 @@ var sync = {
 
 var ScrollActions = {
 
+    activateScrollListener: Reflux.createAction(sync),
+    // ==
     configNativeScrollTop: Reflux.createAction(sync),
     configVerticalScrollHeight: Reflux.createAction(sync),
     // ==
