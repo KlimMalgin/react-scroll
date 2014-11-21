@@ -6,6 +6,11 @@
 var Reflux = require('reflux');
 var ScrollActions = require('./../ScrollActions');
 
+/**
+ * Получает данные о вертикальном смещении (scrollTop) для блока с контентом.
+ * Транслирует их дальше для изменения позиции бегунка с скроллбаре
+ */
+
 var VerticalScrollStore = Reflux.createStore({
 
     init: function () {
@@ -23,6 +28,7 @@ var VerticalScrollStore = Reflux.createStore({
     },
 
     handleScroll: function (scrollTop) {
+        console.log('VerticalScrollStore::verticalScroll %o', scrollTop);
         var offset = scrollTop;
         this.update(offset);
     }

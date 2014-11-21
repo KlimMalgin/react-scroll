@@ -39,7 +39,6 @@ var ContentContainer = React.createClass({
             // ==
             verticalToddleHeight = Math.ceil(realPercent * baseContainerHeight);
 
-
         ScrollActions.changeVerticalToggleHeight(verticalToddleHeight, realPercent);
     },
 

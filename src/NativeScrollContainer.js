@@ -15,22 +15,45 @@ var Reflux = require('reflux'),
     ListenerMixin = Reflux.ListenerMixin;
 
 var ScrollBarParamStore = require('./stores/ScrollBarParamStore');
+var VerticalScrollMoveStore = require('./stores/VerticalScrollMoveStore');
+
+var closest = require('closest');
 
 var NativeScrollContainer = React.createClass({
 
     mixins: [
         ListenerMixin,
-        Reflux.connect(ScrollBarParamStore)
+        Reflux.connect(ScrollBarParamStore),
+        Reflux.connect(VerticalScrollMoveStore)
     ],
 
     propTypes: {
         children: pt.renderable.isRequired
     },
 
+    cache: {
+        /**
+         * Значение в пикселах равное одному проценту от высоты блока с контентом
+         */
+        onePercentValue: 0
+    },
+
+    componentDidMount: function () {
+        this.cache.onePercentValue = closest(this.getDOMNode(), "rs-base-container").clientHeight / 100
+    },
+
+    componentDidUpdate: function (prevProps, prevState) {
+        var offsetValue = this.cache.onePercentValue * prevState.offsetPercentY,
+            result = prevState.startScrollTop +
+                        prevState.offsetToddleY >= 0 ? offsetValue : -offsetValue;
+
+        this.getDOMNode().scrollTop = result;
+
+        console.log('NativeScrollContainer::componentDidUpdate %o %o', arguments, result);
+    },
+
     handleScroll: function () {
         var offset = Math.ceil(this.getDOMNode().scrollTop * this.state.onePercentValue);
-
-        console.log("scrollTop: ", this.getDOMNode(), this.getDOMNode().scrollTop);
         ScrollActions.verticalScroll(offset);
     },
 
