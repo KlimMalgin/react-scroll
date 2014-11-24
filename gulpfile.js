@@ -7,6 +7,8 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     server = require('gulp-express');
 
+var react = require('gulp-react');
+
 var browserify = require('browserify'),
     reactify = require('reactify'),
     deamdify = require('deamdify'),
@@ -15,6 +17,7 @@ var browserify = require('browserify'),
 var paths = {
     scss: ['scss/main.scss', 'scss/example.scss'],
     scripts: ['./src/example.js'],
+    jsx: ['src/**/*.js'],
     watch: {
         js: ['src/**/*.js'],
         scss: ['scss/**/*.scss']
@@ -23,9 +26,16 @@ var paths = {
 
 var dest = {
     js: 'build',
+    tojs: 'js',
     css: 'css',
     buildCss: 'build'
 };
+
+gulp.task('jsx', function () {
+    return gulp.src(paths.jsx)
+        .pipe(react())
+        .pipe(gulp.dest(dest.tojs));
+});
 
 gulp.task('sass', function () {
     return gulp.src(paths.scss)
@@ -60,6 +70,6 @@ gulp.task('watch', ['build'], function (cb) {
     cb();
 });
 
-gulp.task('build', ['scripts', 'sass', 'server']);
+gulp.task('build', ['jsx', 'scripts', 'sass', 'server']);
 
 gulp.task('default', ['watch']);

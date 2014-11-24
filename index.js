@@ -4,4 +4,4 @@
 'use strict';
 
 
-module.exports = require('./src/Container');
+module.exports = require('./js/Container');
