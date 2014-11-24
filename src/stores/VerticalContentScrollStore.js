@@ -4,8 +4,6 @@
 'use strict';
 
 var Reflux = require('reflux');
-//var ScrollActions = require('./../ScrollActions');
-
 var VerticalScrollMoveStore = require('./VerticalScrollMoveStore');
 
 var VerticalContentScrollStore = Reflux.createStore({
@@ -13,7 +11,6 @@ var VerticalContentScrollStore = Reflux.createStore({
     init: function () {
         this.offsetContent = 0;
 
-        //this.listenTo(ScrollActions.verticalContentScroll, this.handleChangeOffset);
         this.listenTo(VerticalScrollMoveStore, this.handleChangeOffset);
     },
 
@@ -29,8 +26,6 @@ var VerticalContentScrollStore = Reflux.createStore({
         var onePercentValue = data.verticalContentHeight / 100,
             offsetValue = onePercentValue * data.offsetPercentY,
             result = data.contentScrollTop + (data.offsetToddleY >= 0 ? offsetValue : -offsetValue);
-
-        console.log('data: %o || contentScrollTop: %o || offsetToddleY: %o || offsetValue: %o || result: %o', data, data.contentScrollTop, data.offsetToddleY, offsetValue, result);
 
         this.update(result);
     }

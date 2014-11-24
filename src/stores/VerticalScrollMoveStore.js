@@ -79,8 +79,14 @@ var VerticalScrollMoveStore = Reflux.createStore({
              */
             vToddleHeight: 0,
 
+            /**
+             * Величина scrollTop для блока с контентом в момент начала скролла
+             */
             contentScrollTop: 0,
 
+            /**
+             * Высота блока с контентом
+             */
             verticalContentHeight: 0
         };
 

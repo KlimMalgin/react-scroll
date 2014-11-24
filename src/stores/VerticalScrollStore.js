@@ -30,16 +30,13 @@ var VerticalScrollStore = Reflux.createStore({
     },
 
     handleScroll: function (scrollTop) {
-        console.log('VerticalScrollStore::verticalScroll %o', scrollTop);
         this.update(scrollTop);
     },
 
     handleVerticalScrollMove: function (data) {
-        //console.log('handleVerticalScrollMove', arguments);
-
         var upperBound = data.verticalScrollHeight - data.vToddleHeight;
-
         var result = data.startScrollTop + data.offsetToddleY;
+
         this.update(
             result < 0 ? 0 :
                 result >= upperBound ?

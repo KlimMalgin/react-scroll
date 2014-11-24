@@ -32,8 +32,7 @@ var Toddler = React.createClass({
     },
 
     componentDidMount: function () {
-        var el = this.getDOMNode();
-        this.cache.nativeScrollContainer = closest(el, "rs-base-container").getElementsByClassName("rs-native-scroll")[0];
+        this.cache.nativeScrollContainer = closest(this.getDOMNode(), "rs-base-container").getElementsByClassName("rs-native-scroll")[0];
     },
 
     componentDidUpdate: function () {
@@ -43,7 +42,6 @@ var Toddler = React.createClass({
     },
 
     handlerMouseDown: function (e) {
-        console.log('handlerMouseDown: %o %o', e.pageX, e.pageY);
         this.onMouseMove(this.handleMouseMove);
         this.onMouseUp(this.handleMouseUp);
 
@@ -57,9 +55,6 @@ var Toddler = React.createClass({
     },
 
     handleMouseMove: function (e) {
-        //console.log(this.cache.nativeScrollContainer.scrollTop);
-
-        //ScrollActions.configContentScrollTop(this.cache.nativeScrollContainer.scrollTop);
         ScrollActions.changeMouseData(e.pageX, e.pageY);
     },
 

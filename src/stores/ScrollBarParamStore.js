@@ -26,7 +26,6 @@ var ScrollBarParamStore = Reflux.createStore({
     },
 
     vToggleResize: function (vToddleHeight, onePercentValue) {
-        console.log("vToddleHeight: ", vToddleHeight);
         this.composite['vToddleHeight'] = vToddleHeight;
         this.composite['onePercentValue'] = onePercentValue;
         this.update();

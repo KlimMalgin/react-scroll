@@ -13,7 +13,7 @@ var browserify = require('browserify'),
     source = require('vinyl-source-stream');
 
 var paths = {
-    scss: ['scss/main.scss'],
+    scss: ['scss/main.scss', 'scss/example.scss'],
     scripts: ['./src/example.js'],
     watch: {
         js: ['src/**/*.js'],
