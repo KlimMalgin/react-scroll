@@ -11,10 +11,12 @@
 
 .rs-native-scroll {
   @include user-select(none);
-  width: inherit;
-  height: inherit;
+  @include absolute(0, -22px, -22px, 0);
   overflow: scroll;
-  padding: 0 22px 22px 0;
+}
+
+.rs-content {
+  padding-right: 22px;
 }
 
 .rs-vertical-scroll-bar {
