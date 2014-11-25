@@ -4,7 +4,8 @@
  */
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    cs = React.addons.classSet;
 
 var Reflux = require('reflux'),
     ListenerMixin = Reflux.ListenerMixin;
@@ -20,8 +21,19 @@ var VerticalScrollBar = React.createClass({
         Reflux.connect(VerticalScrollStore, 'offset')
     ],
 
+    getDefaultProps: function () {
+        return {
+            visible: false
+        };
+    },
+
     render: function () {
-        return (<div className="rs-vertical-scroll-bar">
+        var cls = {
+            'rs-vertical-scroll-bar': true,
+            'hide': !this.props.visible
+        };
+
+        return (<div className={cs(cls)}>
             <Toddler offset={this.state.offset} />
         </div>);
     }
