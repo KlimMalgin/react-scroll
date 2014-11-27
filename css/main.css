@@ -9,10 +9,15 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: inherit;
-  height: inherit;
-  overflow: scroll;
-  padding: 0 22px 22px 0; }
+  position: absolute;
+  top: 0;
+  right: -22px;
+  bottom: -22px;
+  left: 0;
+  overflow: scroll; }
+
+.rs-content {
+  padding-right: 22px; }
 
 .rs-vertical-scroll-bar {
   -webkit-user-select: none;
