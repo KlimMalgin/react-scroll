@@ -39,7 +39,7 @@ var ContentContainer = React.createClass({displayName: 'ContentContainer',
 
     render: function () {
         return (
-            React.createElement("div", {className: "rs-content"}, 
+            React.DOM.div({className: "rs-content"}, 
                 this.props.children
             )
         );

@@ -52,8 +52,8 @@ var NativeScrollContainer = React.createClass({displayName: 'NativeScrollContain
 
     render: function () {
         return (
-            React.createElement("div", {className: "rs-native-scroll"}, 
-                React.createElement(ContentContainer, null, this.props.children)
+            React.DOM.div({className: "rs-native-scroll"}, 
+                ContentContainer(null, this.props.children)
             )
         );
     }

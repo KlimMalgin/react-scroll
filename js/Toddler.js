@@ -66,7 +66,7 @@ var Toddler = React.createClass({displayName: 'Toddler',
     },
 
     render: function () {
-        return (React.createElement("div", {onMouseDown: this.handlerMouseDown, className: "rs-toddler"}));
+        return (React.DOM.div({onMouseDown: this.handlerMouseDown, className: "rs-toddler"}));
     }
 
 });

@@ -17,11 +17,44 @@ var Container = React.createClass({displayName: 'Container',
         children: pt.renderable.isRequired
     },
 
+    getInitialState: function () {
+        return {
+            vScrollShow: false,
+            hScrollShow: false
+        };
+    },
+
+    componentDidMount: function () {
+        this.handleChangeContent();
+    },
+
+    componentDidUpdate: function () {
+        this.handleChangeContent();
+    },
+
+    handleChangeContent: function () {
+        var el = this.getDOMNode(),
+            scrollCnt = el.getElementsByClassName('rs-native-scroll')[0],
+            contentCnt = el.getElementsByClassName('rs-content')[0];
+
+        console.info('handleChangeContent');
+
+        if (contentCnt.clientHeight <= scrollCnt.clientHeight && this.state.vScrollShow) {
+            this.setState({
+                vScrollShow: false
+            });
+        } else if (contentCnt.clientHeight > scrollCnt.clientHeight && !this.state.vScrollShow) {
+            this.setState({
+                vScrollShow: true
+            });
+        }
+    },
+
     render: function () {
         return (
-            React.createElement("div", {className: "rs-base-container"}, 
-                React.createElement(NativeScrollContainer, null, this.props.children), 
-                React.createElement(VerticalScrollBar, null)
+            React.DOM.div({className: "rs-base-container"}, 
+                NativeScrollContainer(null, this.props.children), 
+                VerticalScrollBar({visible: this.state.vScrollShow})
             )
         );
     }
