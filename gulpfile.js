@@ -25,23 +25,23 @@ var paths = {
 };
 
 var dest = {
+    example: 'example',
     js: 'build',
-    tojs: 'js',
     css: 'css',
-    buildCss: 'build'
+    exampleCss: 'example'
 };
 
 gulp.task('jsx', function () {
     return gulp.src(paths.jsx)
         .pipe(react())
-        .pipe(gulp.dest(dest.tojs));
+        .pipe(gulp.dest(dest.js));
 });
 
 gulp.task('sass', function () {
     return gulp.src(paths.scss)
         .pipe(sass())
         .pipe(gulp.dest(dest.css))
-        .pipe(gulp.dest(dest.buildCss));
+        .pipe(gulp.dest(dest.exampleCss));
 });
 
 gulp.task('scripts', function () {
@@ -55,7 +55,7 @@ gulp.task('scripts', function () {
     })
         .bundle()
         .pipe(source('example.js'))
-        .pipe(gulp.dest(dest.js))
+        .pipe(gulp.dest(dest.example))
 });
 
 gulp.task('server', function () {

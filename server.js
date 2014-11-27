@@ -7,10 +7,10 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
-app.use(express.static('./build'));
+app.use(express.static('./example'));
 
 var sendFile = function(req, res){
-    res.sendFile('/index.html', { root : path.join(__dirname, path.join('.', 'build'))});
+    res.sendFile('/index.html', { root : path.join(__dirname, path.join('.', 'example'))});
 };
 
 app.get(/(.*)/, sendFile);
